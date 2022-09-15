@@ -1,14 +1,35 @@
+import React, { useState, useEffect } from "react"
 import Header from "./components/Header";
 import Card from "./components/Card";
 import Drawer from "./components/Drawer";
 
 function App() {
+  const [ isCartOpened, setIsCartOpened ] = useState(false)
+  const [ items, setItems ] = useState([]);
+  const [ cartItems, setCartItems ] = useState([]);
+
+
+  useEffect(() => {
+    const fetchItems = async () => { 
+      const response = await fetch('https://63222e00fd698dfa29088340.mockapi.io/items');
+      const json = await response.json();
+      setItems(json)
+    }
+
+    fetchItems()
+  }, [])
+
+  const addItemToCart = (item) => {
+    setCartItems(prevItems => [ ...prevItems, item ])
+  }
+
+
   return (
     <div className="wrapper">
 
-        <Drawer />
+        {isCartOpened && <Drawer items={cartItems} onClickClose={() => setIsCartOpened(false)} />}
 
-        <Header />
+        <Header onClickCart={() => setIsCartOpened(true)} />
 
         <div className="content">
 
@@ -22,7 +43,17 @@ function App() {
           </div>
 
           <div className="cards">
-            <Card />
+            {items.map(item => {
+              return (
+                <Card 
+                  title={item.title}
+                  price={item.price}
+                  imageUrl={item.imageUrl}
+                  onClickPlus={(item) => addItemToCart(item)}
+                />
+              )
+            })}
+
           </div>
 
         </div>

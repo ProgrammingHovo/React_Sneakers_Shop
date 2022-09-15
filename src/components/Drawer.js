@@ -1,36 +1,26 @@
-function Drawer() {
+function Drawer({ onClickClose, items }) {
     return (
         <div className="overlay">
           <div className="drawer">
 
-            <h2>Корзина <img className="btnRemove" src="/img/btn_remove.svg" alt="Remove" /></h2>
+            <h2 onClick={onClickClose}>Корзина <img className="btnRemove" src="/img/btn_remove.svg" alt="Remove" /></h2>
 
 
             <div className="items">
 
-              <div className="cartItem">
-                  <img width={70} height={70} src="/img/sneakers/1.jpg" alt="Sneaker"/>
+              {items.map((item) => (
+                <div className="cartItem">
+                  <img width={70} height={70} src={item.imageUrl} alt="Sneaker"/>
                   
                   <div>
-                    <p>Мужские Кроссовки Nike Air Max 270</p>
-                    <b>12 999 руб.</b>
+                    <p>{item.title}</p>
+                    <b>{item.price} руб.</b>
                   </div>
 
                   <img className="btnRemove" src="/img/btn_remove.svg" alt="Remove" />
-                  
-              </div>
+                </div>
+              ))}
 
-              <div className="cartItem">
-                  <img width={70} height={70} src="/img/sneakers/1.jpg" alt="Sneaker"/>
-                  
-                  <div>
-                    <p>Мужские Кроссовки Nike Air Max 270</p>
-                    <b>12 999 руб.</b>
-                  </div>
-
-                <img className="btnRemove" src="/img/btn_remove.svg" alt="Remove" />
-                
-              </div>
             
             </div>
             
