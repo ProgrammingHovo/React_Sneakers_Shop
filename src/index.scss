@@ -9,6 +9,7 @@ body {
 *{
   font-family: "inter", system-ui;
   list-style: none;
+  text-decoration: none;
 }
 
 *:focus {
@@ -36,6 +37,7 @@ header{
 .headerLeft{
   display: flex;
   align-items: center;
+  color: black;
 
   img{
     margin-right: 15px;
@@ -90,6 +92,7 @@ header{
 
 
     .inputBlock{
+      position: relative;
       display: flex;
       align-items: center;
       border: 1px solid #F3F3F3;
@@ -98,6 +101,12 @@ header{
       height: 45px;
       padding: 0 15px;
       border-radius: 10px;
+
+      .search_clear{
+        position: absolute;
+        right: 15px;
+        cursor: pointer;
+      }
 
       input{
         border: 0;
@@ -140,6 +149,7 @@ header{
   background: #FFFFFF;
   box-shadow: -10px 4px 24px rgba(0, 0, 0, 0.1);
  
+
   .items{
     flex: 1;
     overflow: auto;
@@ -213,6 +223,17 @@ header{
     cursor: pointer;
     transition: background 0.1s ease-in-out;
 
+    &:disabled {
+      background-color: lighten($color: #9DD558, $amount: 15%);
+      &:hover{
+        background-color: lighten($color: #9DD558, $amount: 15%);
+        cursor: default;
+      }
+      img{
+        transform: translateX(5px);
+      }
+    }
+
     &:hover{
       background: lighten(#9DD558, 5%);
 
@@ -231,6 +252,50 @@ header{
       transition: transform 0.15s ease-in-out;
     }
   }
+
+  .empty_cart{
+    margin-top: 90px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+
+    h3{
+      font-size: 22px;
+      line-height: 27px;
+      font-weight: 600;
+      margin-bottom: 9px;
+    }
+
+    p{
+      text-align: center;
+      opacity: 0.4;
+      font-style: normal;
+      font-size: 16px;
+      line-height: 24px;
+      margin: 0;
+    }
+
+    .greenButton{
+      margin-top: 40px;
+      margin-bottom: 0px;
+
+      img{
+        transform: rotate(180deg);
+        left: 30px;
+      }
+      
+      &:hover{
+          img{
+            transform: rotate(180deg) translateX(3px);
+      
+          }
+      }
+
+    }
+  }
+
 }
 
 .cartItem{
