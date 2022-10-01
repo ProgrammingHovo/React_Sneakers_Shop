@@ -1,24 +1,27 @@
-import React, { useState } from "react"
+import React from "react"
 import styles from "./Card.module.scss"
 import ContentLoader from "react-content-loader"
 import AppContext from "../../context";
 
 
 
-function Card({ id, title, price, imageUrl, onClickPlus, onClickFavorite, favorited, isLoading }) {
-    const [ isAddedToFavorites, setIsAddedToFavorites ] = useState(favorited)
-    const { isItemAddedToCart } = React.useContext(AppContext)                            
-
+function Card({ id, parentId, title, price, imageUrl, onClickPlus, onClickFavorite, removeItemFromFavorites, favorited, isLoading }) {
+    const { isItemAddedToCart, isItemAddedToFavorites } = React.useContext(AppContext)                            
+    const objInfo = { id, parentId, title, price, imageUrl }
 
     const handleClickPlus = () => {
-        onClickPlus({ id, title, price, imageUrl })
+        onClickPlus(objInfo)
     }
 
     const handleClickFavorite = () => {
-        setIsAddedToFavorites(!isAddedToFavorites)
-        onClickFavorite({ id, title, price, imageUrl })
-
+        onClickFavorite(objInfo)
     }
+
+    const onRemoveItemFromFavorites = () => {
+        removeItemFromFavorites({ id, parentId, title, price, imageUrl })
+    }
+
+   
 
 
 
@@ -38,13 +41,13 @@ function Card({ id, title, price, imageUrl, onClickPlus, onClickFavorite, favori
                 <rect x="0" y="138" rx="3" ry="3" width="160" height="15" /> 
                 <rect x="0" y="156" rx="3" ry="3" width="93" height="15" /> 
                 <rect x="0" y="200" rx="8" ry="8" width="80" height="24" /> 
-                <rect x="128" y="192" rx="8" ry="8" width="32" height="32" />
+                {onClickPlus && <rect x="128" y="192" rx="8" ry="8" width="32" height="32" />}
             </ContentLoader> : 
 
                 <>
-                    <button onClick={handleClickFavorite} className={isAddedToFavorites ? styles.favoriteBtnChecked : styles.favoriteBtn}>
-                    <img src={isAddedToFavorites ? "/img/heart_liked.svg" : "/img/heart_unliked.png"} alt="Unliked" />
-                    </button>
+                    {onClickFavorite && <button onClick={favorited ? onRemoveItemFromFavorites : handleClickFavorite} className={isItemAddedToFavorites(id) ? styles.favoriteBtnChecked : styles.favoriteBtn}>
+                    <img src={isItemAddedToFavorites(id) || favorited ? "/img/heart_liked.svg" : "/img/heart_unliked.png"} alt="Unliked" />
+                    </button>}
                     <img className={styles.sneakerImg} width={133} height={112} src={imageUrl} alt="Sneaker" />
                     <h5>{title}</h5>
 
@@ -54,9 +57,9 @@ function Card({ id, title, price, imageUrl, onClickPlus, onClickFavorite, favori
                         <b>{price} руб.</b>
                     </div>
 
-                    <button onClick={handleClickPlus} className={isItemAddedToCart(id) ? styles.plusButtonChecked : styles.plusButton}>
-                        <img width={11} height={11} src={isItemAddedToCart(id) ? "/img/plus-checked.svg" : "/img/plus.svg"} alt="plus" />
-                    </button>
+                    {onClickPlus && <button onClick={handleClickPlus} className={isItemAddedToCart(parentId) ? styles.plusButtonChecked : styles.plusButton}>
+                        <img width={11} height={11} src={isItemAddedToCart(parentId) ? "/img/plus-checked.svg" : "/img/plus.svg"} alt="plus" />
+                    </button>}
                     </div>
                 </>
 

@@ -1,5 +1,5 @@
-import Card from "../components/Card";
 import React from "react";
+import Card from "../components/Card";
 
 export default function Home({  searchValue,
                                 setSearchValue,
@@ -11,7 +11,6 @@ export default function Home({  searchValue,
                                 
                                }) {
 
-                                
     const renderItems = () => {
       const filteredItems = items.filter((item) => item.title.toLowerCase().includes(searchValue.toLowerCase()))
 

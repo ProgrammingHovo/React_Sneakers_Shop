@@ -5,12 +5,13 @@ import AppContext from "../context";
  
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
-function Drawer({ items, onClickRemove }) {
+function Drawer({ items, onClickRemove, isCartOpened }) {
     const { setIsCartOpened, cartItems, setCartItems } = React.useContext(AppContext)
     const [ isOrderCompleted, setIsOrderCompleted ] = React.useState(false)
     const [ orderId, setOrderId ] = React.useState(null)
     const [ isLoading, setIsLoading ] = React.useState(false)
-    
+    const totalPrice = cartItems.reduce((sum, obj) => obj.price + sum, 0)
+    const comission = Math.round(totalPrice/100*5)
 
     const onClickOrder = async () => {
      try {
@@ -35,7 +36,7 @@ function Drawer({ items, onClickRemove }) {
     }
 
     return (
-        <div className="overlay">
+        <div className={`overlay ${isCartOpened ? 'overlayVisible' : ""}`}>
           <div className="drawer">
 
             <h2 onClick={() => setIsCartOpened(false)}>Корзина <img className="btnRemove" src="/img/btn_remove.svg" alt="Remove" /></h2>
@@ -70,13 +71,13 @@ function Drawer({ items, onClickRemove }) {
               <li>
                 <span>Итого: </span>
                 <div></div>
-                <b>21 498 руб. </b>
+                <b>{totalPrice} руб. </b>
               </li>
               
               <li>
                 <span>Налог 5%: </span>
                 <div></div>
-                <b>1074 руб. </b>
+                <b>{comission} руб. </b>
               </li>
             </ul>
 
