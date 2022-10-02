@@ -146,7 +146,7 @@ function App() {
           <div className="content">
 
             <Routes>
-              <Route path="/" element={<Home 
+              <Route path="" element={<Home 
                                           searchValue={searchValue}
                                           setSearchValue={setSearchValue}
                                           onChangeSearchValue={onChangeSearchValue}
@@ -156,13 +156,13 @@ function App() {
                                           isLoading={isLoading}
                                           />} />
 
-              <Route path="/favorites" element={<Favorites 
+              <Route path="favorites" element={<Favorites 
                                           addItemToCart={addItemToCart}
                                           addItemToFavorites={addItemToFavorites}
                                           removeItemFromFavorites={removeItemFromFavorites}
                                           />} />
 
-              <Route path="/orders" element={<Orders isLoading={isLoading} />} />                            
+              <Route path="orders" element={<Orders isLoading={isLoading} />} />                            
             </Routes>
           
           
