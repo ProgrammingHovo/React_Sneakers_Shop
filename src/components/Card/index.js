@@ -46,7 +46,7 @@ function Card({ id, parentId, title, price, imageUrl, onClickPlus, onClickFavori
 
                 <>
                     {onClickFavorite && <button onClick={favorited ? onRemoveItemFromFavorites : handleClickFavorite} className={isItemAddedToFavorites(id) ? styles.favoriteBtnChecked : styles.favoriteBtn}>
-                    <img src={isItemAddedToFavorites(id) || favorited ? "/img/heart_liked.svg" : "/img/heart_unliked.png"} alt="Unliked" />
+                    <img src={isItemAddedToFavorites(id) || favorited ? "img/heart_liked.svg" : "img/heart_unliked.png"} alt="Unliked" />
                     </button>}
                     <img className={styles.sneakerImg} width={133} height={112} src={imageUrl} alt="Sneaker" />
                     <h5>{title}</h5>
@@ -58,7 +58,7 @@ function Card({ id, parentId, title, price, imageUrl, onClickPlus, onClickFavori
                     </div>
 
                     {onClickPlus && <button onClick={handleClickPlus} className={isItemAddedToCart(parentId) ? styles.plusButtonChecked : styles.plusButton}>
-                        <img width={11} height={11} src={isItemAddedToCart(parentId) ? "/img/plus-checked.svg" : "/img/plus.svg"} alt="plus" />
+                        <img width={11} height={11} src={isItemAddedToCart(parentId) ? "img/plus-checked.svg" : "img/plus.svg"} alt="plus" />
                     </button>}
                     </div>
                 </>

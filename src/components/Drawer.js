@@ -39,7 +39,7 @@ function Drawer({ items, onClickRemove, isCartOpened }) {
         <div className={`overlay ${isCartOpened ? 'overlayVisible' : ""}`}>
           <div className="drawer">
 
-            <h2 onClick={() => setIsCartOpened(false)}>Корзина <img className="btnRemove" src="/img/btn_remove.svg" alt="Remove" /></h2>
+            <h2 onClick={() => setIsCartOpened(false)}>Корзина <img className="btnRemove" src="img/btn_remove.svg" alt="Remove" /></h2>
 
 
             
@@ -59,7 +59,7 @@ function Drawer({ items, onClickRemove, isCartOpened }) {
                     <b>{item.price} руб.</b>
                   </div>
 
-                  <img onClick={() => onClickRemove(item.id)} className="btnRemove" src="/img/btn_remove.svg" alt="Remove" />
+                  <img onClick={() => onClickRemove(item.id)} className="btnRemove" src="img/btn_remove.svg" alt="Remove" />
                 </div>
               ))}
 
@@ -82,15 +82,15 @@ function Drawer({ items, onClickRemove, isCartOpened }) {
             </ul>
 
             <button disabled={isLoading} onClick={onClickOrder} className="greenButton">Оформить заказ 
-              <img src="/img/arrow.svg" alt="Arrow"/>
+              <img src="img/arrow.svg" alt="Arrow"/>
             </button>
             </>
            ) : (
 
             <Info title={isOrderCompleted ? "Заказ оформлен!" : "Корзина пустая"} 
                   description={isOrderCompleted ? `Ваш заказ #${orderId} скоро будет передан курьерской доставке"` : "Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ."} 
-                  image={isOrderCompleted ? "/img/order_completed.svg" : "/img/empty_cart.svg"} 
-                  btnImage={"/img/arrow.svg"} />
+                  image={isOrderCompleted ? "img/order_completed.svg" : "img/empty_cart.svg"} 
+                  btnImage={"img/arrow.svg"} />
            )}
 
           </div>
