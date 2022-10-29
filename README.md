@@ -1,4 +1,4 @@
-### This is a small shop project
+### Online shop project - Sneakers Shop
 
 ## Stack:
 
